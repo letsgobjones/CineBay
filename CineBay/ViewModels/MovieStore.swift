@@ -19,6 +19,23 @@ final class MovieStore {
   }
   
   
+  func addMovie(title: String, year: Int) {
+    let newMovie = Movie(title: title, year: year)
+    print("Adding movie \(title) - \(year)")
+    modelContext.insert(newMovie)
+    saveChanges()
+  }
+  
+  func saveChanges(){
+    print("Attempting to save changes...")
+    do {
+      try modelContext.save()
+      print("Changes saved successfully.")
+    } catch {
+      print("Failed to save changes: \(error.localizedDescription)")
+    }
+  }
+  
   
   
 }

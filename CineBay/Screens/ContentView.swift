@@ -22,6 +22,6 @@ struct ContentView: View {
 #Preview {
   NavigationStack {
     ContentView()
-      .modelContainer(for: [Movie.self])
+      .modelContainer(PreviewContainer.shared)
   }
 }

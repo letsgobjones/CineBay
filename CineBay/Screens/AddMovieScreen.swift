@@ -62,6 +62,6 @@ struct AddMovieScreen: View {
 #Preview {
   NavigationStack {
     AddMovieScreen()
-      .modelContainer(for: [Movie.self])
+      .modelContainer(PreviewContainer.shared)
   }
 }

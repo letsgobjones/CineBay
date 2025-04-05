@@ -31,10 +31,13 @@ struct CineBayApp: App {
   
   
   var body: some Scene {
+    
+    let movieStore = MovieStore(modelContext: sharedModelContainer.mainContext)
     WindowGroup {
       NavigationStack {
         MovieListScreen()
       }
+      .environment(movieStore)
     }
     .modelContainer(sharedModelContainer)
   }

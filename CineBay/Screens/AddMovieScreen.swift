@@ -25,7 +25,9 @@ struct AddMovieScreen: View {
     Form {
       TextField("Title", text: $title)
       TextField("Year", value: $year, format: .number)
-    }.toolbar {
+    }
+    .navigationTitle("Add Movie")
+    .toolbar {
       ToolbarItem(placement: .topBarLeading) {
         Button("Close") {
           dismiss()
@@ -44,8 +46,10 @@ struct AddMovieScreen: View {
           }
           catch {
             print("Error saving movie: \(error.localizedDescription)")
-            return
+            
           }
+          
+          dismiss()
         }.disabled(!isFormValid)
       }
       

@@ -13,7 +13,9 @@ struct AddMovieScreen: View {
   @State private var title: String = ""
   @State private var year: Int?
   
-  
+  private var isValid: Bool {
+    title.isEmptyOrWhiteSpace == false && year != nil
+  }
   
   
   var body: some View {
@@ -26,5 +28,7 @@ struct AddMovieScreen: View {
 
 
 #Preview {
-  AddMovieScreen()
+  NavigationStack {
+    AddMovieScreen()
+  }
 }

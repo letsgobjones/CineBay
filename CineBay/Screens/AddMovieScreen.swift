@@ -11,7 +11,7 @@ import SwiftData
 struct AddMovieScreen: View {
   
   @Environment(\.dismiss) private var dismiss
-  @Environment(\.modelContext) private var context
+  @Environment(MovieStore.self) private var movieStore
   
   @State private var title: String = ""
   @State private var year: Int?
@@ -38,30 +38,29 @@ struct AddMovieScreen: View {
           
           guard let year = year else { return }
           
-       let movie = Movie(title: title, year: year)
-          context.insert(movie)
-          
-          do {
-            try  context.save()
-          }
-          catch {
-            print("Error saving movie: \(error.localizedDescription)")
-            
-          }
-          
+          _ = Movie(title: title, year: year)
+          movieStore.addMovie(title: title, year: year)
           dismiss()
-        }.disabled(!isFormValid)
+          }
+        .disabled(!isFormValid)
+         
+        }
       }
       
       
     }
   }
-}
+
 
 
 #Preview {
+  
+  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+  
   NavigationStack {
     AddMovieScreen()
-      .modelContainer(PreviewContainer.shared)
   }
+      .modelContainer(PreviewContainer.shared)
+      .environment(movieStore)
+  
 }

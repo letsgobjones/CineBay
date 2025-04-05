@@ -11,6 +11,8 @@ import SwiftData
 
 
 struct MovieListScreen: View {
+  @Environment(MovieStore.self) private var movieStore
+  
   
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
   @State private var isAddMovieSheetPresented = false
@@ -35,8 +37,11 @@ struct MovieListScreen: View {
 
 
 #Preview {
+  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
   NavigationStack {
     MovieListScreen()
+  }
+  .environment(movieStore)
       .modelContainer(PreviewContainer.shared)
   }
-}
+

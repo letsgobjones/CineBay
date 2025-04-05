@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+  @Environment(MovieStore.self) private var movieStore
+  
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,8 +22,11 @@ struct ContentView: View {
 }
 
 #Preview {
+  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
   NavigationStack {
     ContentView()
+  }
+  .environment(movieStore)
       .modelContainer(PreviewContainer.shared)
   }
-}
+

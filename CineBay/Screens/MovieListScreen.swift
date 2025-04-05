@@ -12,7 +12,7 @@ import SwiftData
 
 struct MovieListScreen: View {
   
-  @Query private var movies: [Movie]
+  @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
   @State private var isAddMovieSheetPresented = false
   
     var body: some View {
@@ -25,6 +25,11 @@ struct MovieListScreen: View {
           }
           }
         }
+      .sheet(isPresented: $isAddMovieSheetPresented) {
+        NavigationStack {
+          AddMovieScreen()
+        }
+      }
       }
     }
 

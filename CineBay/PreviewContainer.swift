@@ -15,7 +15,7 @@ struct PreviewContainer {
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         do {
-            let container = try ModelContainer(for: schema, configurations: modelConfiguration)
+            let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
             return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")

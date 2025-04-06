@@ -11,7 +11,7 @@ import SwiftData
 struct MovieListView: View {
   
   @Environment(MovieStore.self) private var movieStore
-  @Query private var movies: [Movie]
+    var movies: [Movie]
 
     var body: some View {
       List {
@@ -35,7 +35,7 @@ struct MovieListView: View {
   let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
   
   NavigationStack {
-    MovieListView()
+    MovieListView(movies: Movie.example)
   }
   .environment(movieStore)
       .modelContainer(PreviewContainer.shared)

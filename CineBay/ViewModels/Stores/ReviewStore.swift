@@ -11,6 +11,16 @@ import SwiftData
 
 final class ReviewStore {
   
+  private var modelContext: ModelContext
+  
+  init(modelContext: ModelContext) {
+    self.modelContext = modelContext
+    print("MovieStore Initialized with context")
+
+  }
+  
+  
+  
   
   
   

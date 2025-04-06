@@ -16,6 +16,7 @@ final class MovieStore {
   
   init(modelContext: ModelContext) {
     self.modelContext = modelContext
+    print("MovieStore Initialized with context")
   }
   
   

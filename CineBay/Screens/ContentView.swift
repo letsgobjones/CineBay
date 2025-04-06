@@ -26,7 +26,7 @@ struct ContentView: View {
   NavigationStack {
     ContentView()
   }
+  .modelContainer(PreviewContainer.shared)
   .environment(movieStore)
-      .modelContainer(PreviewContainer.shared)
   }
 

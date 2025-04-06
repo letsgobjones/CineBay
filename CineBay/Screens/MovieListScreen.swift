@@ -40,7 +40,7 @@ struct MovieListScreen: View {
   NavigationStack {
     MovieListScreen()
   }
+  .modelContainer(PreviewContainer.shared)
   .environment(movieStore)
-      .modelContainer(PreviewContainer.shared)
   }
 

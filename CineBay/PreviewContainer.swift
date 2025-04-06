@@ -44,13 +44,10 @@ print("PreviewContainer: Inserting mock data via extension...")
                   Movie(title: "Spirited Away", year: 2001),
                   Movie(title: "Mad Max: Fury Road", year: 2015)
               ]
-      
+    
       for movie in sampleMovies {
           context.insert(movie)
       }
     print("PreviewContainer: Sample data insertion complete.")
-    
   }
-    
-  
 }

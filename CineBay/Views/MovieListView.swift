@@ -11,27 +11,29 @@ import SwiftData
 struct MovieListView: View {
   
   @Environment(MovieStore.self) private var movieStore
-    var movies: [Movie]
-
- 
+  var movies: [Movie]
   
   
   
   
-    var body: some View {
-      List {
-        ForEach(movies) { movie in
+  
+  
+  var body: some View {
+    List {
+      ForEach(movies) { movie in
+        NavigationLink(value: movie) {
           HStack {
             Text(movie.title)
             Spacer()
             Text(movie.year.description)
           }
-        }.onDelete { indexSet in movieStore.deleteMovie(at: indexSet, movies: movies)
-          
         }
-        
+      }.onDelete { indexSet in movieStore.deleteMovie(at: indexSet, movies: movies)
       }
+    }.navigationDestination(for: Movie.self) { movie in
+      MovieDetailScreen(movie: movie)
     }
+  }
 }
 
 

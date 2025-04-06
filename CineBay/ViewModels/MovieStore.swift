@@ -37,5 +37,14 @@ final class MovieStore {
   }
   
   
+  func deleteMovie(indexSet: IndexSet, movies: [Movie]) {
+    indexSet.forEach { index in
+    let movie = movies[index]
+      modelContext.delete(movie)
+      saveChanges()
+    }
+  }
+  
+  
   
 }

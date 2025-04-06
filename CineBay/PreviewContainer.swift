@@ -19,7 +19,7 @@ struct PreviewContainer {
             let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
           
           Task {
-            PreviewContainer.insertSampleData(context: container.mainContext)
+            await PreviewContainer.insertSampleData(context: container.mainContext)
           }
           
           

@@ -22,11 +22,7 @@ struct MovieListView: View {
     List {
       ForEach(movies) { movie in
         NavigationLink(value: movie) {
-          HStack {
-            Text(movie.title)
-            Spacer()
-            Text(movie.year.description)
-          }
+          MovieListCellView(movie: movie)
         }
       }.onDelete { indexSet in movieStore.deleteMovie(at: indexSet, movies: movies)
       }

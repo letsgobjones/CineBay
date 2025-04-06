@@ -12,22 +12,26 @@ import SwiftData
 struct PreviewContainer {
     static var shared: ModelContainer = {
         let schema = Schema([
-            Movie.self,
+            Movie.self, Review.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         do {
+          print("Creating Preview ModelContainer...")
             let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
+          print("Preview ModelContainer created successfully.")
           
+          // Insert sample data asynchronously AFTER container creation
+          // Use Task to avoid blocking the static initializer
           Task {
+            print("PreviewContainer: Task starting to insert sample data...")
             await PreviewContainer.insertSampleData(context: container.mainContext)
+            print("PreviewContainer: Task finished inserting sample data.")
           }
-          
-          
             return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
-    }()
+    }() // Immediately execute the closure
 }
 
 

@@ -8,9 +8,9 @@
 import SwiftUI
 import SwiftData
 
-
+@MainActor
 @Observable
-final class MovieStore: Sendable {
+final class MovieStore {
   
   private var modelContext: ModelContext
   

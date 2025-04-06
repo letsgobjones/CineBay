@@ -10,7 +10,7 @@ import SwiftData
 
 
 @Observable
-final class MovieStore {
+final class MovieStore: Sendable {
   
   private var modelContext: ModelContext
   

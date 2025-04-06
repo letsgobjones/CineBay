@@ -8,12 +8,8 @@
 import SwiftUI
 import SwiftData
 
-
-
-
 @Model
 final class Movie {
-  
   var title: String
   var year: Int
   
@@ -24,4 +20,14 @@ final class Movie {
     self.year = year
   }
   
+}
+
+extension Movie {
+  static var example: [Movie] {
+    [
+      Movie(title: "Example Movie 1", year: 2021),
+      Movie(title: "Example Movie 2", year: 2022),
+      Movie(title: "Example Movie 3", year: 2023)
+    ]
+  }
 }

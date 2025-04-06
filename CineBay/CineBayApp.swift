@@ -11,11 +11,13 @@ import SwiftData
 @main
 struct CineBayApp: App {
   
+  // 1. Define the persistent ModelContainer (SHARED INSTANCE)
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
-      Movie.self
+      Movie.self, Review.self
     ])
     
+    // Configure for persistent storage (on-disk)
     let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
     
     do {
@@ -23,22 +25,28 @@ struct CineBayApp: App {
     } catch {
       fatalError("Could not create ModelContainer: \(error)")
     }
- 
-  }()
+  }()// Immediately execute the closure
   
+  // 2. Create the AppServices container instance as State
+  @State private var appServices: AppServices
   
-  
-  
+  // 3. Custom init to initialize @State object BEFORE body access
+  init() {
+    print("CineApp init() called...")
+    // Initialize AppServices state object, passing the shared ModelContainer
+    _appServices = State(initialValue: AppServices(modelContainer: sharedModelContainer))
+    print("CineBayApp init finished.")
+  }
   
   var body: some Scene {
-    
-    let movieStore = MovieStore(modelContext: sharedModelContainer.mainContext)
     WindowGroup {
       NavigationStack {
         MovieListScreen()
       }
-      .environment(movieStore)
+      // 4. Inject the AppServices instance
+      .environment(appServices)
     }
+    // 5. Inject the ModelContainer (needed for @Query, @Environment(\.modelContext))
     .modelContainer(sharedModelContainer)
   }
 }

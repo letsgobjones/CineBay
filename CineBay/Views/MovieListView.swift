@@ -13,6 +13,11 @@ struct MovieListView: View {
   @Environment(MovieStore.self) private var movieStore
     var movies: [Movie]
 
+ 
+  
+  
+  
+  
     var body: some View {
       List {
         ForEach(movies) { movie in
@@ -21,6 +26,8 @@ struct MovieListView: View {
             Spacer()
             Text(movie.year.description)
           }
+        }.onDelete { indexSet in movieStore.deleteMovie(at: indexSet, movies: movies)
+          
         }
         
       }

@@ -25,6 +25,7 @@ struct MovieDetailScreen: View {
           movie.year = year
           movieStore.saveChanges()
         }
+        .buttonStyle(.borderless)
       }.onAppear {
        title = movie.title
         year = movie.year

@@ -16,12 +16,30 @@ final class ReviewStore {
   init(modelContext: ModelContext) {
     self.modelContext = modelContext
     print("MovieStore Initialized with context")
-
+    
   }
   
   
+  func addReview(subject: String, body: String, movie: Movie) {
+    let review = Review(subject: subject, body: body)
+    review.movie = movie
+    modelContext.insert(review)
+    saveChanges()
+  }
   
   
+  func saveChanges() {
+    print("Attempting to save changes...")
+    do {
+      try modelContext.save()
+      print("Changes saved successfully.")
+    } catch {
+      print("Failed to save changes: \(error.localizedDescription)")
+    }
+  }
   
   
 }
+
+
+

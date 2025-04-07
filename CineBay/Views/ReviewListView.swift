@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReviewListView: View {
     @Environment(AppManager.self) private var appManager
-  let reviews: [Review]?
+
   let movie: Movie
     var body: some View {
       if let reviews = movie.reviews, !reviews.isEmpty {
@@ -36,7 +36,7 @@ struct ReviewListView: View {
     let appManager = AppManager(modelContainer: PreviewContainer.shared)
     
     NavigationStack {
-      ReviewListView(reviews: Review.example, movie:Movie.example[0])
+      ReviewListView( movie:Movie.example[0])
     }
     .modelContainer(PreviewContainer.shared)
     .environment(appManager)

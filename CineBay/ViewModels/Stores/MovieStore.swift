@@ -20,7 +20,12 @@ final class MovieStore {
   }
   
   
-  func addMovie(title: String, year: Int) {
+  func addMovie(title: String, year: Int?) {
+    guard let year = year else {
+      print("Addition cancelled: Year is nil")
+      return
+    }
+    
     let movie = Movie(title: title, year: year)
     print("Adding movie \(title) - \(year)")
     modelContext.insert(movie)

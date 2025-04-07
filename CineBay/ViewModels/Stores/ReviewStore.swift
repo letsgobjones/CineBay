@@ -18,15 +18,13 @@ final class ReviewStore {
     print("MovieStore Initialized with context")
     
   }
-  
-  
+    
   func addReview(subject: String, body: String, movie: Movie) {
     let review = Review(subject: subject, body: body)
     review.movie = movie
     modelContext.insert(review)
     saveReview()
   }
-  
   
   func saveReview() {
     print("Attempting to save changes...")
@@ -37,8 +35,6 @@ final class ReviewStore {
       print("Failed to save changes: \(error.localizedDescription)")
     }
   }
-  
-  
 }
 
 

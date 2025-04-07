@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReviewListView: View {
-    @Environment(AppServices.self) private var appServices
+    @Environment(AppManager.self) private var appManager
   
   let movie: Movie
     var body: some View {
@@ -28,12 +28,12 @@ struct ReviewListView: View {
   
   
   #Preview {
-    let appServices = AppServices(modelContainer: PreviewContainer.shared)
+    let appManager = AppManager(modelContainer: PreviewContainer.shared)
     
     NavigationStack {
       ReviewListView(movie:Movie.example.first!)
     }
     .modelContainer(PreviewContainer.shared)
-    .environment(appServices)
+    .environment(appManager)
   }
 

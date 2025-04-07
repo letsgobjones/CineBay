@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-  @Environment(MovieStore.self) private var movieStore
+  @Environment(AppManager.self) private var appManager
+
   
     var body: some View {
         VStack {
@@ -22,11 +23,11 @@ struct ContentView: View {
 }
 
 #Preview {
-  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+ let appManager = AppManager(modelContainer: PreviewContainer.shared)
   NavigationStack {
     ContentView()
   }
   .modelContainer(PreviewContainer.shared)
-  .environment(movieStore)
+  .environment(appManager)
   }
 

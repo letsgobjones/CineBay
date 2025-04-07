@@ -10,7 +10,7 @@ import SwiftData
 
 struct MovieListView: View {
   
- @Environment(AppServices.self) private var appServices
+ @Environment(AppManager.self) private var appManager
   var movies: [Movie]
   
   
@@ -24,7 +24,7 @@ struct MovieListView: View {
         NavigationLink(value: movie) {
           MovieListCellView(movie: movie)
         }
-      }.onDelete { indexSet in appServices.movieStore.deleteMovie(at: indexSet, movies: movies)
+      }.onDelete { indexSet in appManager.movieStore.deleteMovie(at: indexSet, movies: movies)
       }
     }.navigationDestination(for: Movie.self) { movie in
       MovieDetailScreen(movie: movie)
@@ -37,11 +37,11 @@ struct MovieListView: View {
 
 
 #Preview {
- let appServices = AppServices(modelContainer: PreviewContainer.shared)
+ let appManager = AppManager(modelContainer: PreviewContainer.shared)
   
   NavigationStack {
     MovieListView(movies: Movie.example)
   }
   .modelContainer(PreviewContainer.shared)
-  .environment(appServices)
+  .environment(appManager)
 }

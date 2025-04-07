@@ -19,20 +19,16 @@ final class MovieStore {
     print("MovieStore Initialized with context")
   }
   
-  
   func addMovie(title: String, year: Int?) {
     guard let year = year else {
       print("Addition cancelled: Year is nil")
       return
     }
-    
     let movie = Movie(title: title, year: year)
     print("Adding movie \(title) - \(year)")
     modelContext.insert(movie)
     saveMovie()
   }
-  
-
   
   func updateMovie(movie: Movie, title: String, year: Int?) {
     guard let year = year else {
@@ -53,8 +49,6 @@ final class MovieStore {
     }
   }
   
-  
-  
   func saveMovie(){
     print("Attempting to save changes...")
     do {
@@ -64,6 +58,4 @@ final class MovieStore {
       print("Failed to save changes: \(error.localizedDescription)")
     }
   }
-  
-  
 }

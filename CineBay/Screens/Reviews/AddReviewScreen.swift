@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddReviewScreen: View {
   @Environment(\.dismiss) private var dismiss
-  @Environment(AppServices.self) private var appServices
+  @Environment(AppManager.self) private var appManager
   
   let movie: Movie
   
@@ -38,7 +38,7 @@ struct AddReviewScreen: View {
           }
           ToolbarItem(placement: .topBarTrailing) {
             Button("Save") {
-              appServices.reviewStore.addReview(subject: subject, body: description, movie: movie)
+              appManager.reviewStore.addReview(subject: subject, body: description, movie: movie)
              
               subject = ""
               description = ""
@@ -50,10 +50,10 @@ struct AddReviewScreen: View {
 }
 
 #Preview {
-  let appServices = AppServices(modelContainer: PreviewContainer.shared)
+  let appManager = AppManager(modelContainer: PreviewContainer.shared)
   NavigationStack {
     AddReviewScreen(movie: Movie.example[0])
   }
-  .environment(appServices)
+  .environment(appManager)
   .modelContainer(PreviewContainer.shared)
 }

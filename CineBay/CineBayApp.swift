@@ -28,13 +28,13 @@ struct CineBayApp: App {
   }()// Immediately execute the closure
   
   // 2. Create the AppServices container instance as State
-  @State private var appServices: AppServices
+  @State private var appServices: AppManager
   
   // 3. Custom init to initialize @State object BEFORE body access
   init() {
     print("CineApp init() called...")
     // Initialize AppServices state object, passing the shared ModelContainer
-    _appServices = State(initialValue: AppServices(modelContainer: sharedModelContainer))
+    _appServices = State(initialValue: AppManager(modelContainer: sharedModelContainer))
     print("CineBayApp init finished.")
   }
   

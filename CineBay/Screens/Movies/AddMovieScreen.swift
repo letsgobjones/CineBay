@@ -11,7 +11,8 @@ import SwiftData
 struct AddMovieScreen: View {
   
   @Environment(\.dismiss) private var dismiss
-  @Environment(AppServices.self) private var appServices
+  @Environment(AppManager.self) private var appManager
+  
   
   @State private var title: String = ""
   @State private var year: Int?
@@ -50,12 +51,12 @@ struct AddMovieScreen: View {
 
 
 #Preview {
-  let appServices = AppServices(modelContainer: PreviewContainer.shared)
+  let appManager = AppManager(modelContainer: PreviewContainer.shared)
   
   NavigationStack {
     AddMovieScreen()
   }
       .modelContainer(PreviewContainer.shared)
-      .environment(appServices)
+      .environment(appManager)
   
 }

@@ -10,7 +10,7 @@ import SwiftData
 
 struct MovieDetailScreen: View {
   
-  @Environment(AppServices.self) private var appServices
+  @Environment(AppManager.self) private var appManager
   let movie: Movie
   
   @State private var title: String = ""
@@ -21,7 +21,7 @@ struct MovieDetailScreen: View {
         TextField("Title", text: $title)
         TextField("Year", value: $year, format: .number)
         Button("Uddate") {
-          appServices.movieStore.updateMovie(movie: movie, title: title, year: year)
+          appManager.movieStore.updateMovie(movie: movie, title: title, year: year)
         }
         .buttonStyle(.borderless)
         
@@ -52,10 +52,10 @@ struct MovieDetailScreen: View {
 }
 
 #Preview {
-let appServices = AppServices(modelContainer: PreviewContainer.shared)
+let appManager = AppManager(modelContainer: PreviewContainer.shared)
   NavigationStack {
     MovieDetailScreen(movie: Movie.example.first!)
   }
   .modelContainer(PreviewContainer.shared)
-  .environment(appServices)
+  .environment(appManager)
 }

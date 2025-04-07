@@ -24,13 +24,11 @@ final class Review {
 }
 
 extension Review {
-  
   static var example: [Review] {
     [
       Review(subject: "Subject 1", body: "Body 1", movie: Movie.example[0]),
       Review(subject: "Subject 2", body: "Body 2", movie: Movie.example[1]),
       Review(subject: "Subject 3", body: "Body 3", movie: Movie.example[2])
     ]
-    
   }
 }

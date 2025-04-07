@@ -88,7 +88,7 @@ extension PreviewContainer {
     sampleMovies[2].actors = [sampleActors[2]] // Dune - Timothée Chalamet
     sampleMovies[3].actors = [sampleActors[3]] // Nomadland - Frances McDormand
     sampleMovies[4].actors = [sampleActors[4], sampleActors[5]] // Avengers: Endgame - RDJ, CB
-    
+    sampleMovies[5].actors =  [sampleActors[5]] // CB
     print("PreviewContainer: Sample data insertion complete.")
   }
 }

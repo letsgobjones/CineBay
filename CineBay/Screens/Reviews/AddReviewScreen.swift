@@ -40,7 +40,7 @@ struct AddReviewScreen: View {
             Button("Save") {
               appManager.reviewStore.addReview(subject: subject, body: description, movie: movie)
              
-              subject = ""
+              subject  = ""
               description = ""
             }.disabled(!isFormValid)
           }

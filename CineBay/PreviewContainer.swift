@@ -22,7 +22,7 @@ struct PreviewContainer {
           
           // Insert sample data asynchronously AFTER container creation
           // Use Task to avoid blocking the static initializer
-          Task {
+          Task { @MainActor in
             print("PreviewContainer: Task starting to insert sample data...")
             await PreviewContainer.insertSampleData(context: container.mainContext)
             print("PreviewContainer: Task finished inserting sample data.")
@@ -37,7 +37,7 @@ struct PreviewContainer {
 
 @MainActor
 extension PreviewContainer {
-  static func insertSampleData(context: ModelContext) {
+  static func insertSampleData(context: ModelContext) async {
 print("PreviewContainer: Inserting mock data via extension...")
 
       let sampleMovies = [

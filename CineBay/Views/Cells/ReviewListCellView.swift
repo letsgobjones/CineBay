@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReviewCellView: View {
+struct ReviewListCellView: View {
   let review: Review
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,6 +18,6 @@ struct ReviewCellView: View {
 }
 
 #Preview {
-  ReviewCellView(review: Review.example[0])
+  ReviewListCellView(review: Review.example[0])
     .padding()
 }

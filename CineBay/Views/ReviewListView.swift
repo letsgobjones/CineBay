@@ -15,7 +15,7 @@ struct ReviewListView: View {
       if let reviews = movie.reviews, !reviews.isEmpty {
         List {
           ForEach(reviews) { review in
-            ReviewCellView(review: review)
+            ReviewListCellView(review: review)
           }
         }
         

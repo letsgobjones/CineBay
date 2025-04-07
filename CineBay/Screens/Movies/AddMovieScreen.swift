@@ -19,7 +19,7 @@ struct AddMovieScreen: View {
   @State private var selectedActors: Set<Actor> = []
   
   private var isFormValid: Bool {
-    title.isEmptyOrWhiteSpace == false && year != nil
+    title.isEmptyOrWhiteSpace == false && year != nil && !selectedActors.isEmpty
   }
   
   var body: some View {
@@ -33,10 +33,17 @@ struct AddMovieScreen: View {
     }
     .navigationTitle("Add Movie")
     .toolbar {
-      AddMovieScreenToolbar(onClose: { dismiss() }, onSave: { appManager.movieStore.addMovie(title: title, year: year) }, isSaveDisabled: !isFormValid)
-      }
+      ActionToolbar(leadingActionLabel: "Close",
+                    trailingActionLabel: "Save",
+                    onLeadingAction: { dismiss() },
+                    onTrailingAction: {
+        appManager.movieStore.addMovie(title: title, year: year, selectedActors: selectedActors)
+        dismiss()
+      },
+                    isTrailingActionDisabled: !isFormValid)
     }
   }
+}
 
 
 
@@ -46,7 +53,7 @@ struct AddMovieScreen: View {
   NavigationStack {
     AddMovieScreen()
   }
-      .modelContainer(PreviewContainer.shared)
-      .environment(appManager)
+  .modelContainer(PreviewContainer.shared)
+  .environment(appManager)
   
 }

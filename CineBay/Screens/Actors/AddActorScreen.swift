@@ -45,8 +45,6 @@ struct AddActorScreen: View {
     @State private var showSheet = true // Show sheet immediately
     
     var body: some View {
-      // Use a minimal view like Color.clear or Text
-      // just to attach the .sheet modifier to.
       Color.clear
         .sheet(isPresented: $showSheet) {
           AddActorScreen()

@@ -30,7 +30,7 @@ struct MovieListScreen: View {
     }
     .padding()
       .toolbar {
-       MovieListToolbar(onAddActor: { activeSheet = .addActor }, onAddMovie: { activeSheet = .addMovie })
+        ActionToolbar(leadingActionLabel: "Add Actor", trailingActionLabel: "Add Movie", onLeadingAction: { activeSheet = .addActor }, onTrailingAction: { activeSheet = .addMovie }, isTrailingActionDisabled: false)
       }
       .sheet(item: $activeSheet) { item in
         switch item {

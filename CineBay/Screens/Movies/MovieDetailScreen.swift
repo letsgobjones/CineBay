@@ -26,7 +26,6 @@ struct MovieDetailScreen: View {
         .buttonStyle(.borderless)
         
         Section("Reviews") {
-         
           Button {
             showReviewScreen = true
           } label: {
@@ -36,6 +35,19 @@ struct MovieDetailScreen: View {
 
           ReviewListView( movie: movie)
         }
+        
+        Section("Actors") {
+          if movie.actors?.isEmpty ?? false {
+            ContentUnavailableView("No actors available", systemImage: "person.3.fill")
+          } else {
+            List(movie.actors ?? [] ){ actor in
+              ActorCellView(actor: actor)
+            }
+          }
+          
+        }
+        
+        
       }.onAppear {
        title = movie.title
         year = movie.year

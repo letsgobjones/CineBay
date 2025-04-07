@@ -27,6 +27,29 @@ final class MovieStore {
     saveMovie()
   }
   
+
+  
+  func updateMovie(movie: Movie, title: String, year: Int?) {
+    guard let year = year else {
+      print("Update cancelled: Year is nil")
+      return
+    }
+    
+    movie.title = title
+    movie.year = year
+    saveMovie()
+  }
+  
+  func deleteMovie(at indexSet: IndexSet, movies: [Movie]) {
+    indexSet.forEach { index in
+    let movie = movies[index]
+      modelContext.delete(movie)
+      saveMovie()
+    }
+  }
+  
+  
+  
   func saveMovie(){
     print("Attempting to save changes...")
     do {
@@ -36,16 +59,6 @@ final class MovieStore {
       print("Failed to save changes: \(error.localizedDescription)")
     }
   }
-  
-  
-  func deleteMovie(at indexSet: IndexSet, movies: [Movie]) {
-    indexSet.forEach { index in
-    let movie = movies[index]
-      modelContext.delete(movie)
-      saveChanges()
-    }
-  }
-  
   
   
 }

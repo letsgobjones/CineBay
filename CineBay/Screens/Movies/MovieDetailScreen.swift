@@ -20,10 +20,7 @@ struct MovieDetailScreen: View {
         TextField("Title", text: $title)
         TextField("Year", value: $year, format: .number)
         Button("Udpate") {
-          guard let year = year else { return }
-          movie.title = title
-          movie.year = year
-          appServices.movieStore.saveChanges()
+          appServices.movieStore.updateMovie(movie: movie, title: title, year: year)
         }
         .buttonStyle(.borderless)
       }.onAppear {

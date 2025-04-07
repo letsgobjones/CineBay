@@ -17,7 +17,7 @@ struct ActorListView: View {
           ActorCellView(actor: actor)
         }
       }.navigationDestination(for: Actor.self) { actor in
-       Text("Actor Details")
+    ActorDetailScreen(actor: actor)
       }
     }
 }

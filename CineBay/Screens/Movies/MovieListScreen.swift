@@ -11,9 +11,7 @@ import SwiftData
 
 
 struct MovieListScreen: View {
-  @Environment(MovieStore.self) private var movieStore
-  
-  
+  @Environment(AppServices.self) private var appServices
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
   @State private var isAddMovieSheetPresented = false
   
@@ -30,17 +28,20 @@ struct MovieListScreen: View {
         NavigationStack {
           AddMovieScreen()
         }
+        // Explicitly pass the received appServices down into the sheet's environment
+                        .environment(appServices)
       }
       }
     }
 
 
 #Preview {
-  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+  let appServices = AppServices(modelContainer: PreviewContainer.shared)
   NavigationStack {
     MovieListScreen()
+    
   }
   .modelContainer(PreviewContainer.shared)
-  .environment(movieStore)
+  .environment(appServices)
   }
 

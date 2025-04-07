@@ -13,34 +13,41 @@ import SwiftData
 struct MovieListScreen: View {
   @Environment(AppManager.self) private var appManager
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+  @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?
   
   
   var body: some View {
-    MovieListView(movies: movies)
+    VStack(alignment: .leading) {
+      Text("Movies")
+        .font(.largeTitle)
+      MovieListView(movies: movies)
+      
+      Text("Actors")
+        .font(.largeTitle)
+      ActorListView(actors: actors)
+    }
+    .padding()
       .toolbar {
        MovieListToolbar(onAddActor: { activeSheet = .addActor }, onAddMovie: { activeSheet = .addMovie })
       }
       .sheet(item: $activeSheet) { item in
-        
         switch item {
         case .addMovie:
           NavigationStack {
             AddMovieScreen()
           }
-          // Explicitly pass the received appServices down into the sheet's environment
-          .environment(appManager)
           
         case .addActor:
           NavigationStack {
             AddActorScreen()
-             
           }
           .presentationDetents([.fraction(0.25)])
-          .environment(appManager)
         }
       }
+    // Explicitly pass the received appServices down into the sheet's environment
+      .environment(appManager)
   }
 }
 

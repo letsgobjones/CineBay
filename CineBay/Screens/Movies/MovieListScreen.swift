@@ -44,9 +44,10 @@ struct MovieListScreen: View {
           
         case .addActor:
           NavigationStack {
-            //            AddActorScreen()
-            Text("Add Actor")
+            AddActorScreen()
+             
           }
+          .presentationDetents([.fraction(0.25)])
           .environment(appManager)
         }
       }

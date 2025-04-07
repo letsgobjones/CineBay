@@ -9,14 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct MovieListView: View {
-  
  @Environment(AppManager.self) private var appManager
   var movies: [Movie]
-  
-  
-  
-  
-  
   
   var body: some View {
     List {

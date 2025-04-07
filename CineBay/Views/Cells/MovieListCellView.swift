@@ -21,8 +21,8 @@ struct MovieListCellView: View {
 }
 
 #Preview {
-  NavigationStack {
-    MovieListCellView(movie: .example.first!)
+
+    MovieListCellView(movie: .example[0])
       .padding()
-  }
+  
 }

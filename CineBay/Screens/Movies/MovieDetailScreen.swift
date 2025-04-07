@@ -35,15 +35,8 @@ struct MovieDetailScreen: View {
           }  .buttonStyle(.borderless)
 
           
-//          if let reviews = movie.reviews {
-//            if reviews.isEmpty {
-//              ContentUnavailableView("No Reviews", image: Image(systemName: "list.bullet"))
-//              
-//            }
-//            else {
-//              Text("List of reviews")
-//            }
-//          }
+          ReviewListView( movie: movie)
+        
         }
         
       }.onAppear {

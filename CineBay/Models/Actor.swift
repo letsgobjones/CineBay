@@ -23,8 +23,8 @@ final class Actor {
 extension Actor {
   static var example: [Actor] {
     [
-      Actor(name: "Brandon Jones"),
-      Actor(name: "Joey Tribbiani"),
+      Actor(name: "Actor 1"),
+      Actor(name: "Actor 2"),
     ]
   }
 }

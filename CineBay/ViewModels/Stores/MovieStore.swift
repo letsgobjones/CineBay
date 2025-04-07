@@ -19,16 +19,27 @@ final class MovieStore {
     print("MovieStore Initialized with context")
   }
   
-  func addMovie(title: String, year: Int?) {
+  func addMovie(title: String, year: Int?, selectedActors: Set<Actor>) {
     guard let year = year else {
       print("Addition cancelled: Year is nil")
       return
     }
     let movie = Movie(title: title, year: year)
+    movie.actors = Array(selectedActors)
+    
+    selectedActors.forEach { actor in
+      actor.movies?.append(movie)
+      modelContext.insert(actor)
+    }
+    
     print("Adding movie \(title) - \(year)")
     modelContext.insert(movie)
     saveMovie()
   }
+  
+  
+  
+  
   
   func updateMovie(movie: Movie, title: String, year: Int?) {
     guard let year = year else {

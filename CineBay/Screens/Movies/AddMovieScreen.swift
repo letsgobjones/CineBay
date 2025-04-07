@@ -35,7 +35,7 @@ struct AddMovieScreen: View {
       }
       ToolbarItem(placement: .topBarTrailing) {
         Button("Save") {
-          appServices.movieStore.addMovie(title: title, year: year)
+          appManager.movieStore.addMovie(title: title, year: year)
          
           title = ""
           year = nil

@@ -16,10 +16,11 @@ struct ReviewListView: View {
         List {
           ForEach(reviews) { review in
             ReviewListCellView(review: review)
+          }.onDelete { indexSet in appManager.reviewStore.deleteReview(at: indexSet, movie: movie)
           }
+          
         }
-        
-      } else {
+      }else {
         ContentUnavailableView {
           Label("No Reviews", systemImage: "list.bullet")
         } description: {

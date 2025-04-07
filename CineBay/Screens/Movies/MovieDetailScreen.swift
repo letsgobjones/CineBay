@@ -34,11 +34,8 @@ struct MovieDetailScreen: View {
               .frame(maxWidth: .infinity, alignment: .trailing)
           }  .buttonStyle(.borderless)
 
-          
           ReviewListView( movie: movie)
-        
         }
-        
       }.onAppear {
        title = movie.title
         year = movie.year

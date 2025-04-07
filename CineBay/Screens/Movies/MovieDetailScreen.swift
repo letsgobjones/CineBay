@@ -15,17 +15,45 @@ struct MovieDetailScreen: View {
   
   @State private var title: String = ""
   @State private var year: Int?
+  @State private var showReviewScreen: Bool = false
     var body: some View {
       Form {
         TextField("Title", text: $title)
         TextField("Year", value: $year, format: .number)
-        Button("Udpate") {
+        Button("Uddate") {
           appServices.movieStore.updateMovie(movie: movie, title: title, year: year)
         }
         .buttonStyle(.borderless)
+        
+        Section("Reviews") {
+         
+          Button {
+            showReviewScreen = true
+          } label: {
+            Image(systemName: "plus")
+              .frame(maxWidth: .infinity, alignment: .trailing)
+          }  .buttonStyle(.borderless)
+
+          
+//          if let reviews = movie.reviews {
+//            if reviews.isEmpty {
+//              ContentUnavailableView("No Reviews", image: Image(systemName: "list.bullet"))
+//              
+//            }
+//            else {
+//              Text("List of reviews")
+//            }
+//          }
+        }
+        
       }.onAppear {
        title = movie.title
         year = movie.year
+      }
+      .sheet(isPresented: $showReviewScreen) {
+        NavigationStack {
+          AddReviewScreen(movie: movie)
+        }
       }
     }
 }

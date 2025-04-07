@@ -26,6 +26,16 @@ final class ReviewStore {
     saveReview()
   }
   
+  
+  func deleteReview(at indexSet: IndexSet, movie: Movie) {
+    indexSet.forEach { index in
+     let review = movie.reviews![index]
+      modelContext.delete(review)
+      saveReview()
+    }
+  }
+  
+  
   func saveReview() {
     print("Attempting to save changes...")
     do {

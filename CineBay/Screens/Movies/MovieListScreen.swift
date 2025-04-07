@@ -20,17 +20,7 @@ struct MovieListScreen: View {
   var body: some View {
     MovieListView(movies: movies)
       .toolbar {
-        ToolbarItem(placement: .topBarLeading) {
-          Button("Add Actor") {
-            activeSheet = .addActor
-          }
-        }
-        
-        ToolbarItem(placement: .topBarTrailing) {
-          Button("Add Movie") {
-            activeSheet = .addMovie
-          }
-        }
+       MovieListToolbar(onAddActor: { activeSheet = .addActor }, onAddMovie: { activeSheet = .addMovie })
       }
       .sheet(item: $activeSheet) { item in
         

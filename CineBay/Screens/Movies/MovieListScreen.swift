@@ -13,27 +13,45 @@ import SwiftData
 struct MovieListScreen: View {
   @Environment(AppManager.self) private var appManager
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
-  @State private var isAddMovieSheetPresented = false
   
-    var body: some View {
-      MovieListView(movies: movies)
-        .toolbar {
+  @State private var activeSheet: ActiveSheet?
+  
+  
+  var body: some View {
+    MovieListView(movies: movies)
+      .toolbar {
+        ToolbarItem(placement: .topBarLeading) {
+          Button("Add Actor") {
+            activeSheet = .addActor
+          }
+        }
+        
         ToolbarItem(placement: .topBarTrailing) {
           Button("Add Movie") {
-           isAddMovieSheetPresented = true
-          }
+            activeSheet = .addMovie
           }
         }
-      .sheet(isPresented: $isAddMovieSheetPresented) {
-        NavigationStack {
-          AddMovieScreen()
+      }
+      .sheet(item: $activeSheet) { item in
+        
+        switch item {
+        case .addMovie:
+          NavigationStack {
+            AddMovieScreen()
+          }
+          // Explicitly pass the received appServices down into the sheet's environment
+          .environment(appManager)
+          
+        case .addActor:
+          NavigationStack {
+            //            AddActorScreen()
+            Text("Add Actor")
+          }
+          .environment(appManager)
         }
-        // Explicitly pass the received appServices down into the sheet's environment
-                        .environment(appManager)
       }
-      }
-    }
-
+  }
+}
 
 #Preview {
   let appManager = AppManager(modelContainer: PreviewContainer.shared)
@@ -43,5 +61,14 @@ struct MovieListScreen: View {
   }
   .modelContainer(PreviewContainer.shared)
   .environment(appManager)
-  }
+}
 
+
+extension MovieListScreen {
+  enum ActiveSheet: Identifiable {
+    case addMovie
+    case addActor
+    
+    var id: Self { self }
+  }
+}

@@ -38,7 +38,7 @@ struct AddReviewScreen: View {
           }
           ToolbarItem(placement: .topBarTrailing) {
             Button("Save") {
-              
+              appServices.reviewStore.addReview(subject: subject, body: description, movie: movie)
             }.disabled(!isFormValid)
           }
           

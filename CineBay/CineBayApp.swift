@@ -14,7 +14,7 @@ struct CineBayApp: App {
   // 1. Define the persistent ModelContainer (SHARED INSTANCE)
   var sharedModelContainer: ModelContainer = {
     let schema = Schema([
-      Movie.self, Review.self
+      Movie.self, Review.self, Actor.self
     ])
     
     // Configure for persistent storage (on-disk)

@@ -12,7 +12,7 @@ import SwiftData
 struct PreviewContainer {
     static var shared: ModelContainer = {
         let schema = Schema([
-            Movie.self, Review.self
+            Movie.self, Review.self, Actor.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
         do {

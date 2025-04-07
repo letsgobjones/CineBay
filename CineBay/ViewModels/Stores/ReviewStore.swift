@@ -24,11 +24,11 @@ final class ReviewStore {
     let review = Review(subject: subject, body: body)
     review.movie = movie
     modelContext.insert(review)
-    saveChanges()
+    saveReview()
   }
   
   
-  func saveChanges() {
+  func saveReview() {
     print("Attempting to save changes...")
     do {
       try modelContext.save()

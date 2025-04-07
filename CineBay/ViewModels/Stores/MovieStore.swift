@@ -24,10 +24,10 @@ final class MovieStore {
     let movie = Movie(title: title, year: year)
     print("Adding movie \(title) - \(year)")
     modelContext.insert(movie)
-    saveChanges()
+    saveMovie()
   }
   
-  func saveChanges(){
+  func saveMovie(){
     print("Attempting to save changes...")
     do {
       try modelContext.save()

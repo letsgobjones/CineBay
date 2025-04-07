@@ -21,9 +21,9 @@ final class MovieStore {
   
   
   func addMovie(title: String, year: Int) {
-    let newMovie = Movie(title: title, year: year)
+    let movie = Movie(title: title, year: year)
     print("Adding movie \(title) - \(year)")
-    modelContext.insert(newMovie)
+    modelContext.insert(movie)
     saveChanges()
   }
   

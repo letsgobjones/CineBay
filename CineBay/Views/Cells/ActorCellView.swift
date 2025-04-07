@@ -14,6 +14,7 @@ struct ActorCellView: View {
       VStack(alignment: .leading) {
         Text(actor.name)
         Text((actor.movies?.map { $0.title }).flatMap { $0.formatted(.list(type: .and)) } ?? "No Movies Listed")
+          .font(.caption)
       }
     }
 }

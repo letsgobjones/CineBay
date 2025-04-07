@@ -34,12 +34,11 @@ struct AddMovieScreen: View {
       }
       ToolbarItem(placement: .topBarTrailing) {
         Button("Save") {
-          
-          guard let year = year else { return }
-          
-          _ = Movie(title: title, year: year)
           appServices.movieStore.addMovie(title: title, year: year)
-          dismiss()
+         
+          title = ""
+          year = nil
+         
           }
         .disabled(!isFormValid)
          

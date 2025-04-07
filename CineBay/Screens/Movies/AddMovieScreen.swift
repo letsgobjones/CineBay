@@ -28,22 +28,7 @@ struct AddMovieScreen: View {
     }
     .navigationTitle("Add Movie")
     .toolbar {
-      ToolbarItem(placement: .topBarLeading) {
-        Button("Close") {
-          dismiss()
-        }
-      }
-      ToolbarItem(placement: .topBarTrailing) {
-        Button("Save") {
-          appManager.movieStore.addMovie(title: title, year: year)
-         
-          title = ""
-          year = nil
-         
-          }
-        .disabled(!isFormValid)
-         
-        }
+      AddMovieScreenToolbar(onClose: { dismiss() }, onSave: { appManager.movieStore.addMovie(title: title, year: year) }, isSaveDisabled: !isFormValid)
       }
     }
   }

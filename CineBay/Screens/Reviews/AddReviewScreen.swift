@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddReviewScreen: View {
   @Environment(\.dismiss) private var dismiss
-  @Environment(MovieStore.self) private var movieStore
+  @Environment(AppServices.self) private var appServices
   
   let movie: Movie
   
@@ -47,10 +47,10 @@ struct AddReviewScreen: View {
 }
 
 #Preview {
-  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+  let appServices = AppServices(modelContainer: PreviewContainer.shared)
   NavigationStack {
     AddReviewScreen(movie: Movie.example[0])
   }
-  .environment(movieStore)
+  .environment(appServices)
   .modelContainer(PreviewContainer.shared)
 }

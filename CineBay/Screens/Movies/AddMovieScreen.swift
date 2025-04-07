@@ -11,7 +11,7 @@ import SwiftData
 struct AddMovieScreen: View {
   
   @Environment(\.dismiss) private var dismiss
-  @Environment(MovieStore.self) private var movieStore
+  @Environment(AppServices.self) private var appServices
   
   @State private var title: String = ""
   @State private var year: Int?
@@ -19,7 +19,6 @@ struct AddMovieScreen: View {
   private var isFormValid: Bool {
     title.isEmptyOrWhiteSpace == false && year != nil
   }
-  
   
   var body: some View {
     Form {
@@ -39,28 +38,25 @@ struct AddMovieScreen: View {
           guard let year = year else { return }
           
           _ = Movie(title: title, year: year)
-          movieStore.addMovie(title: title, year: year)
+          appServices.movieStore.addMovie(title: title, year: year)
           dismiss()
           }
         .disabled(!isFormValid)
          
         }
       }
-      
-      
     }
   }
 
 
 
 #Preview {
-  
-  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+  let appServices = AppServices(modelContainer: PreviewContainer.shared)
   
   NavigationStack {
     AddMovieScreen()
   }
       .modelContainer(PreviewContainer.shared)
-      .environment(movieStore)
+      .environment(appServices)
   
 }

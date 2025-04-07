@@ -10,7 +10,7 @@ import SwiftData
 
 struct MovieDetailScreen: View {
   
-  @Environment(MovieStore.self) private var movieStore
+  @Environment(AppServices.self) private var appServices
   let movie: Movie
   
   @State private var title: String = ""
@@ -23,7 +23,7 @@ struct MovieDetailScreen: View {
           guard let year = year else { return }
           movie.title = title
           movie.year = year
-          movieStore.saveChanges()
+          appServices.movieStore.saveChanges()
         }
         .buttonStyle(.borderless)
       }.onAppear {
@@ -34,10 +34,10 @@ struct MovieDetailScreen: View {
 }
 
 #Preview {
-  let movieStore = MovieStore(modelContext: PreviewContainer.shared.mainContext)
+let appServices = AppServices(modelContainer: PreviewContainer.shared)
   NavigationStack {
     MovieDetailScreen(movie: Movie.example.first!)
   }
   .modelContainer(PreviewContainer.shared)
-  .environment(movieStore)
+  .environment(appServices)
 }

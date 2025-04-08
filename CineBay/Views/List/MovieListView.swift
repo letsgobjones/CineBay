@@ -10,6 +10,7 @@ import SwiftData
 
 struct MovieListView: View {
  @Environment(AppManager.self) private var appManager
+  
   @Query private var movies: [Movie]
   
   let filterOption: FilterOption
@@ -19,7 +20,7 @@ struct MovieListView: View {
     
     switch self.filterOption {
     case .title(let movieTitle):
-      _movies = Query (filter: #Predicate<Movie> { $0.title.contains(movieTitle) })
+      _movies = Query (filter: #Predicate<Movie> { $0.title.localizedStandardContains(movieTitle) })
     case .none:
       _movies =  Query()
     }

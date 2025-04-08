@@ -10,7 +10,20 @@ import SwiftData
 
 struct MovieListView: View {
  @Environment(AppManager.self) private var appManager
-  var movies: [Movie]
+  @Query private var movies: [Movie]
+  
+  let filterOption: FilterOption
+  
+  init(filterOption: FilterOption = .none) {
+    self.filterOption = filterOption
+    
+    switch self.filterOption {
+    case .title(let movieTitle):
+      _movies = Query (filter: #Predicate<Movie> { $0.title.contains(movieTitle) })
+    case .none:
+      _movies =  Query()
+    }
+  }
   
   var body: some View {
     List {
@@ -34,7 +47,8 @@ struct MovieListView: View {
  let appManager = AppManager(modelContainer: PreviewContainer.shared)
   
   NavigationStack {
-    MovieListView(movies: Movie.example)
+//    MovieListView(movies: Movie.example)
+    MovieListView(filterOption: .none)
   }
   .modelContainer(PreviewContainer.shared)
   .environment(appManager)

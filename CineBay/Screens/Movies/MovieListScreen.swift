@@ -13,11 +13,10 @@ import SwiftData
 struct MovieListScreen: View {
   @Environment(AppManager.self) private var appManager
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+//  @Query(filter: #Predicate<Actor> { $0.actor.count > 2 }) private var movies : [Movie]
   @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?
-  
-  
   var body: some View {
     VStack(alignment: .leading) {
       Text("Movies")
@@ -44,6 +43,13 @@ struct MovieListScreen: View {
             AddActorScreen()
           }
           .presentationDetents([.fraction(0.25)])
+          
+          
+        case .showFilter:
+          NavigationStack {
+            //          FilterScreen()
+            Text("Show Filter")
+          }
         }
       }
     // Explicitly pass the received appServices down into the sheet's environment
@@ -66,6 +72,7 @@ extension MovieListScreen {
   enum ActiveSheet: Identifiable {
     case addMovie
     case addActor
+    case showFilter
     
     var id: Self { self }
   }

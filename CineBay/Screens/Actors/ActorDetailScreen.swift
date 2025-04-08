@@ -10,10 +10,19 @@ import SwiftData
 
 struct ActorDetailScreen: View {
   @Environment(AppManager.self) private var appManager
-  
+  @State private var selectedMovies: Set<Movie> = []
   let actor: Actor
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      VStack {
+       MovieSelectionView(selectedMovies: $selectedMovies)
+          .onAppear {
+            selectedMovies = Set(actor.movies ?? [])
+          }
+      }
+      .onChange(of: selectedMovies, {
+        actor.movies = Array(selectedMovies)
+        appManager.actorStore.saveActor()
+      }).navigationTitle(actor.name)
     }
 }
 

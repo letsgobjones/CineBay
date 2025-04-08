@@ -36,8 +36,3 @@ struct FilterSelectionScreen: View {
 
 
 
-extension FilterSelectionScreen {
-  enum FilterOption {
-    case title(String)
-  }
-}

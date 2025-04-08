@@ -17,10 +17,17 @@ struct MovieListScreen: View {
   @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?
+  @State private var filterOption: FilterOption = .none
   var body: some View {
     VStack(alignment: .leading) {
-      Text("Movies")
-        .font(.largeTitle)
+      HStack(alignment: .firstTextBaseline) {
+        Text("Movies")
+          .font(.largeTitle)
+        Spacer()
+        Button("Filter") {
+          activeSheet = .showFilter
+        }
+      }
       MovieListView(movies: movies)
       
       Text("Actors")
@@ -47,8 +54,8 @@ struct MovieListScreen: View {
           
         case .showFilter:
           NavigationStack {
-            //          FilterScreen()
-            Text("Show Filter")
+           FilterSelectionScreen(filterOption: $filterOption)
+         
           }
         }
       }
@@ -68,12 +75,3 @@ struct MovieListScreen: View {
 }
 
 
-extension MovieListScreen {
-  enum ActiveSheet: Identifiable {
-    case addMovie
-    case addActor
-    case showFilter
-    
-    var id: Self { self }
-  }
-}

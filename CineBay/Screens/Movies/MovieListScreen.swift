@@ -12,8 +12,8 @@ import SwiftData
 
 struct MovieListScreen: View {
   @Environment(AppManager.self) private var appManager
+
   @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
-//  @Query(filter: #Predicate<Actor> { $0.actor.count > 2 }) private var movies : [Movie]
   @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?
@@ -28,7 +28,7 @@ struct MovieListScreen: View {
           activeSheet = .showFilter
         }
       }
-      MovieListView(movies: movies)
+      MovieListView(filterOption: filterOption)
       
       Text("Actors")
         .font(.largeTitle)

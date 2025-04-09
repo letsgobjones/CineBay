@@ -12,14 +12,14 @@ import SwiftData
 enum CineBayMigrationPlan: SchemaMigrationPlan {
   
   static var schemas: [any VersionedSchema.Type] {
-    [CineBaySchemaV1.self, CineBaySchemaV2.self]
+    [CineBaySchemaV1.self, CineBaySchemaV2.self, CineBaySchemaV3.self]
   }
   
   static var stages: [MigrationStage] {
-    [createMigrationStage()] // Ensure the migration stage is included in the stages array
+    [createMigrationStageV1toV2(), createMigrationStageV2toV3()] // Ensure the migration stage is included in the stages array
   }
   
-  private static func createMigrationStage() -> MigrationStage {
+  private static func createMigrationStageV1toV2() -> MigrationStage {
     
     return MigrationStage.custom(
       fromVersion: CineBaySchemaV1.self,
@@ -58,6 +58,12 @@ enum CineBayMigrationPlan: SchemaMigrationPlan {
         
       }, didMigrate: nil)
   }
+  
+  private static func createMigrationStageV2toV3() -> MigrationStage {
+    return MigrationStage.lightweight(fromVersion: CineBaySchemaV2.self, toVersion: CineBaySchemaV3.self)
+  }
+  
+  
 }
 
 //willMirgrate = will give you the opportunity to do something before the migration

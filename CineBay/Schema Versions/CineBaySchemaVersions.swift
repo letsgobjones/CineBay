@@ -35,14 +35,44 @@ enum CineBaySchemaV1: VersionedSchema {
     @Relationship(deleteRule: .nullify, inverse: \Actor.movies)
     var actors: [Actor] = []
     
+    init(title: String, year: Int) {
+      self.title = title
+      self.year = year
+    }
+  }
+}
+
+
+enum CineBaySchemaV2: VersionedSchema {
+  static var versionIdentifier: String = "Adding unique constraints to movie name."
+  
+  static var models: [any PersistentModel.Type] {
+    [Movie.self]
+  }
+  
+  @Model
+  final class Movie {
     
+    @Attribute(.unique) var title: String
+    var year: Int
+    
+    var reviewsCount: Int {
+      reviews.count
+    }
+    
+    var actorsCount: Int {
+      actors.count
+    }
+    
+    @Relationship(deleteRule: .cascade, inverse: \Review.movie)
+    var reviews:[Review] = []
+    
+    @Relationship(deleteRule: .nullify, inverse: \Actor.movies)
+    var actors: [Actor] = []
     
     init(title: String, year: Int) {
       self.title = title
       self.year = year
     }
-    
   }
-  
-  case initial
 }

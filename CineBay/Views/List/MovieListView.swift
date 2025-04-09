@@ -56,6 +56,8 @@ extension MovieListView {
     case .titleContains(let movieTitle):
       return #Predicate<Movie> { $0.title.localizedStandardContains(movieTitle) }
 
+    case .reviewCount(let numberOfReviews):
+      return #Predicate<Movie> { $0.reviews.count >= numberOfReviews }
     }
   }
 }

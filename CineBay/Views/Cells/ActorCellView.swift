@@ -10,13 +10,21 @@ import SwiftUI
 struct ActorCellView: View {
   
   let actor: Actor
-    var body: some View {
-      VStack(alignment: .leading) {
-        Text(actor.name)
-        Text((actor.movies?.map { $0.title }).flatMap { $0.formatted(.list(type: .and)) } ?? "No Movies Listed")
+  var body: some View {
+    VStack(alignment: .leading) {
+      Text(actor.name)
+      
+      if !actor.movies.isEmpty {
+        Text(actor.movies.map { $0.title }.formatted(.list(type: .and)))
+      } else
+      {
+        Text("No Movies Listed")
           .font(.caption)
+          .foregroundColor(.secondary)
       }
+      
     }
+  }
 }
 
 #Preview {
@@ -24,3 +32,6 @@ struct ActorCellView: View {
   
     .padding()
 }
+
+
+//?? "No Movies Listed")

@@ -24,7 +24,7 @@ final class MovieStore {
       print("Addition cancelled: Year is nil")
       return
     }
-    let movie = Movie(title: title, year: year)
+    let movie = Movie(name: title, year: year)
     movie.actors = Array(selectedActors)
     
     selectedActors.forEach { actor in
@@ -47,7 +47,7 @@ final class MovieStore {
       return
     }
     
-    movie.title = title
+    movie.name = title
     movie.year = year
     saveMovie()
   }

@@ -49,7 +49,7 @@ struct MovieDetailScreen: View {
         
         
       }.onAppear {
-       title = movie.title
+       title = movie.name
         year = movie.year
       }
       .sheet(isPresented: $showReviewScreen) {

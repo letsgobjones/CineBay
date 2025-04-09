@@ -41,12 +41,12 @@ extension PreviewContainer {
     print("PreviewContainer: Inserting mock data via extension...")
     
     let sampleMovies = [
-      Movie(title: "Oppenheimer", year: 2023),
-      Movie(title: "Everything Everywhere All at Once", year: 2022),
-      Movie(title: "Dune", year: 2021),
-      Movie(title: "Nomadland", year: 2020),
-      Movie(title: "Avengers: Endgame", year: 2019),
-      Movie(title: "Black Panther", year: 2018)
+      Movie(name: "Oppenheimer", year: 2023),
+      Movie(name: "Everything Everywhere All at Once", year: 2022),
+      Movie(name: "Dune", year: 2021),
+      Movie(name: "Nomadland", year: 2020),
+      Movie(name: "Avengers: Endgame", year: 2019),
+      Movie(name: "Black Panther", year: 2018)
     ]
     
     for movie in sampleMovies {

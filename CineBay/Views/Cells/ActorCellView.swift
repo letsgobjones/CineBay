@@ -15,7 +15,7 @@ struct ActorCellView: View {
       Text(actor.name)
       
       if !actor.movies.isEmpty {
-        Text(actor.movies.map { $0.title }.formatted(.list(type: .and)))
+        Text(actor.movies.map { $0.name }.formatted(.list(type: .and)))
       } else
       {
         Text("No Movies Listed")

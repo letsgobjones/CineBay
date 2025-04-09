@@ -11,7 +11,7 @@ import SwiftData
 struct MovieSelectionView: View {
   @Environment(AppManager.self) private var appManager
   
-  @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+  @Query(sort: \Movie.name, order: .forward) private var movies: [Movie]
   
   @Binding var selectedMovies: Set<Movie>
   
@@ -27,7 +27,7 @@ struct MovieSelectionView: View {
               }
               
             }
-          Text(movie.title)
+          Text(movie.name)
         }
         
       }

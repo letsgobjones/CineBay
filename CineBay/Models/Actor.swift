@@ -11,7 +11,7 @@ import SwiftData
 
 
 
-typealias Actor = CineBaySchemaV2.Actor
+typealias Actor = CineBaySchemaV3.Actor
 
 //@Model
 //final class Actor {

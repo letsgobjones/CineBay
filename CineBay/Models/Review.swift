@@ -11,7 +11,7 @@ import SwiftData
 
 
 
-typealias Review = CineBaySchemaV2.Review
+typealias Review = CineBaySchemaV3.Review
 //@Model
 //final class Review {
 //  var subject: String

@@ -8,14 +8,14 @@
 import SwiftUI
 import SwiftData
 
-typealias Movie = CineBaySchemaV2.Movie
+typealias Movie = CineBaySchemaV3.Movie
 
 extension Movie {
   static var example: [Movie] {
     [
-      Movie(title: "Example Movie 1", year: 2021),
-      Movie(title: "Example Movie 2", year: 2022),
-      Movie(title: "Example Movie 3", year: 2023)
+      Movie(name: "Example Movie 1", year: 2021),
+      Movie(name: "Example Movie 2", year: 2022),
+      Movie(name: "Example Movie 3", year: 2023)
     ]
   }
 }

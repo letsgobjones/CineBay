@@ -13,7 +13,7 @@ import SwiftData
 struct MovieListScreen: View {
   @Environment(AppManager.self) private var appManager
 
-  @Query(sort: \Movie.title, order: .forward) private var movies: [Movie]
+  @Query(sort: \Movie.name, order: .forward) private var movies: [Movie]
   @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?

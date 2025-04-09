@@ -12,7 +12,8 @@ enum CineBaySchemaV1: VersionedSchema {
   static var versionIdentifier: Schema.Version { Schema.Version(1,0,0) }
   
   static var models: [any PersistentModel.Type] {
-    [Movie.self]
+    // Add all three models into Schema
+            [Movie.self, Review.self, Actor.self]
   }
   
   @Model
@@ -40,6 +41,30 @@ enum CineBaySchemaV1: VersionedSchema {
       self.year = year
     }
   }
+  
+  @Model
+  final class Review {
+    var subject: String
+    var body : String
+    var movie: Movie
+    
+    
+    init(subject: String, body: String, movie: Movie) {
+      self.subject = subject
+      self.body = body
+      self.movie = movie
+    }
+  }
+  
+  @Model
+  final class Actor {
+    var name: String
+    var movies: [Movie] = []
+    
+    init(name: String) {
+      self.name = name
+    }
+  }
 }
 
 
@@ -47,7 +72,8 @@ enum CineBaySchemaV2: VersionedSchema {
   static var versionIdentifier: Schema.Version { Schema.Version(2,0,0) }
   
   static var models: [any PersistentModel.Type] {
-    [Movie.self]
+    // Add all three models into Schema
+            [Movie.self, Review.self, Actor.self]
   }
   
   @Model
@@ -75,4 +101,29 @@ enum CineBaySchemaV2: VersionedSchema {
       self.year = year
     }
   }
+  
+  @Model
+  final class Review {
+    var subject: String
+    var body : String
+    var movie: Movie
+    
+    
+    init(subject: String, body: String, movie: Movie) {
+      self.subject = subject
+      self.body = body
+      self.movie = movie
+    }
+  }
+  
+  @Model
+  final class Actor {
+    var name: String
+    var movies: [Movie] = []
+    
+    init(name: String) {
+      self.name = name
+    }
+  }
+  
 }

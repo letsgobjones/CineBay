@@ -16,7 +16,7 @@ struct ActorDetailScreen: View {
       VStack {
        MovieSelectionView(selectedMovies: $selectedMovies)
           .onAppear {
-            selectedMovies = Set(actor.movies ?? [])
+            selectedMovies = Set(actor.movies)
           }
       }
       .onChange(of: selectedMovies, {

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 enum CineBaySchemaV1: VersionedSchema {
-  static var versionIdentifier: String = "Initial version."
+  static var versionIdentifier: Schema.Version { Schema.Version(1,0,0) }
   
   static var models: [any PersistentModel.Type] {
     [Movie.self]
@@ -44,7 +44,7 @@ enum CineBaySchemaV1: VersionedSchema {
 
 
 enum CineBaySchemaV2: VersionedSchema {
-  static var versionIdentifier: String = "Adding unique constraints to movie name."
+  static var versionIdentifier: Schema.Version { Schema.Version(2,0,0) }
   
   static var models: [any PersistentModel.Type] {
     [Movie.self]

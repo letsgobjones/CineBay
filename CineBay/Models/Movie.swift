@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-typealias Movie = CineBaySchemaV1.Movie
+typealias Movie = CineBaySchemaV2.Movie
 
 extension Movie {
   static var example: [Movie] {

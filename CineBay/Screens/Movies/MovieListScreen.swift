@@ -17,7 +17,7 @@ struct MovieListScreen: View {
   @Query(sort :\Actor.name, order: .forward) private var actors: [Actor]
   
   @State private var activeSheet: ActiveSheet?
-  @State private var filterOption: FilterOption = .none
+  @State private var filterOption: MovieFilterOption = .none
   var body: some View {
     VStack(alignment: .leading) {
       HStack(alignment: .firstTextBaseline) {

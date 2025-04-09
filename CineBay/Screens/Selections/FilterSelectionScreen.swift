@@ -12,14 +12,14 @@ struct FilterSelectionScreen: View {
   @Environment(\.dismiss) private var dismiss
   
   @State private var movieTitle: String = ""
-  @Binding var filterOption: FilterOption
+  @Binding var filterOption: MovieFilterOption
   
     var body: some View {
       Form{
         Section("Filter by title") {
         TextField("Movie Title", text: $movieTitle)
           Button("Search") {
-          filterOption = .title(movieTitle)
+          filterOption = .titleContains(movieTitle)
             dismiss()
           }
         }
@@ -28,7 +28,7 @@ struct FilterSelectionScreen: View {
 }
 
 #Preview {
-  FilterSelectionScreen(filterOption: .constant(.title("Black Panther")))
+  FilterSelectionScreen(filterOption: .constant(.titleContains("Black Panther")))
 }
 
 

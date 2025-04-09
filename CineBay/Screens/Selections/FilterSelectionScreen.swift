@@ -12,6 +12,7 @@ struct FilterSelectionScreen: View {
   @Environment(\.dismiss) private var dismiss
   
   @State private var movieTitle: String = ""
+  @State private var numberOfReviews: Int?
   @Binding var filterOption: MovieFilterOption
   
     var body: some View {
@@ -23,6 +24,16 @@ struct FilterSelectionScreen: View {
             dismiss()
           }
         }
+        
+        Section("Filter by review count") {
+        TextField("Number of reviews", value: $numberOfReviews, format: .number)
+          Button("Search") {
+            filterOption = .reviewCount(numberOfReviews ?? 1)
+            dismiss()
+          }
+        }
+        
+        
       }
     }
 }

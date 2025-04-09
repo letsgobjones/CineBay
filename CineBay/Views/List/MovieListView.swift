@@ -13,17 +13,12 @@ struct MovieListView: View {
   
   @Query private var movies: [Movie]
   
-  let filterOption: FilterOption
-  
-  init(filterOption: FilterOption = .none) {
+  let filterOption: MovieFilterOption
+  //NOTE extract this out to an extension
+  init(filterOption: MovieFilterOption = .none) {
     self.filterOption = filterOption
     
-    switch self.filterOption {
-    case .title(let movieTitle):
-      _movies = Query (filter: #Predicate<Movie> { $0.title.localizedStandardContains(movieTitle) })
-    case .none:
-      _movies =  Query()
-    }
+    _movies = Query(filter: Self.createPredicate(for: filterOption))
   }
   
   var body: some View {
@@ -46,11 +41,25 @@ struct MovieListView: View {
 
 #Preview {
  let appManager = AppManager(modelContainer: PreviewContainer.shared)
-  
   NavigationStack {
 //    MovieListView(movies: Movie.example)
     MovieListView(filterOption: .none)
   }
   .modelContainer(PreviewContainer.shared)
   .environment(appManager)
+}
+
+
+
+extension MovieListView {
+  static func createPredicate(for filterOption: MovieFilterOption) -> Predicate<Movie>? {
+    switch filterOption {
+    case .none:
+      return nil
+      
+    case .titleContains(let movieTitle):
+      return #Predicate<Movie> { $0.title.localizedStandardContains(movieTitle) }
+
+    }
+  }
 }

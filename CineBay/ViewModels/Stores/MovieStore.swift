@@ -28,7 +28,7 @@ final class MovieStore {
     movie.actors = Array(selectedActors)
     
     selectedActors.forEach { actor in
-      actor.movies?.append(movie)
+      actor.movies.append(movie)
       modelContext.insert(actor)
     }
     

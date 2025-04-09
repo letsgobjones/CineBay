@@ -13,10 +13,10 @@ import SwiftData
 final class Review {
   var subject: String
   var body : String
-  var movie: Movie?
+  var movie: Movie 
   
   
-  init(subject: String, body: String, movie: Movie? = nil) {
+  init(subject: String, body: String, movie: Movie) {
     self.subject = subject
     self.body = body
     self.movie = movie

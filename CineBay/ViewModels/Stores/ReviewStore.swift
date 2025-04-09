@@ -20,7 +20,7 @@ final class ReviewStore {
   }
     
   func addReview(subject: String, body: String, movie: Movie) {
-    let review = Review(subject: subject, body: body)
+    let review = Review(subject: subject, body: body, movie: movie)
     review.movie = movie
     modelContext.insert(review)
     saveReview()
@@ -29,7 +29,7 @@ final class ReviewStore {
   
   func deleteReview(at indexSet: IndexSet, movie: Movie) {
     indexSet.forEach { index in
-     let review = movie.reviews![index]
+     let review = movie.reviews[index]
       modelContext.delete(review)
       saveReview()
     }

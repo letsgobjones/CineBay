@@ -58,6 +58,8 @@ extension MovieListView {
 
     case .reviewCount(let numberOfReviews):
       return #Predicate<Movie> { $0.reviews.count >= numberOfReviews }
+    case .actorCount(let numberOfActors):
+      return #Predicate<Movie> { $0.actors.count >= numberOfActors }
     }
   }
 }

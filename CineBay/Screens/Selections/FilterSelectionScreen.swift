@@ -13,6 +13,7 @@ struct FilterSelectionScreen: View {
   
   @State private var movieTitle: String = ""
   @State private var numberOfReviews: Int?
+  @State private var numberOfActors: Int?
   @Binding var filterOption: MovieFilterOption
   
     var body: some View {
@@ -29,6 +30,14 @@ struct FilterSelectionScreen: View {
         TextField("Number of reviews", value: $numberOfReviews, format: .number)
           Button("Search") {
             filterOption = .reviewCount(numberOfReviews ?? 1)
+            dismiss()
+          }
+        }
+        
+        Section("Filter by number of actors") {
+          TextField("Number of actors", value: $numberOfActors, format: .number)
+          Button("Search") {
+            filterOption = .actorCount(numberOfActors ?? 1)
             dismiss()
           }
         }

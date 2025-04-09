@@ -9,6 +9,7 @@ enum MovieFilterOption: Identifiable, Hashable {
   case none
   case titleContains(String)
   case reviewCount(Int)
+  case actorCount(Int)
 //  case yearIs(Int)
   
   var id: Self { self }

@@ -9,15 +9,19 @@ import SwiftUI
 import SwiftData
 
 
-@Model
-final class Actor {
-  var name: String
-  var movies: [Movie] = []
-  
-  init(name: String) {
-    self.name = name
-  }
-}
+
+
+typealias Actor = CineBaySchemaV2.Actor
+
+//@Model
+//final class Actor {
+//  var name: String
+//  var movies: [Movie] = []
+//  
+//  init(name: String) {
+//    self.name = name
+//  }
+//}
 
 
 extension Actor {

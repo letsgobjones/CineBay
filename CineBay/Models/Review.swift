@@ -9,19 +9,22 @@ import SwiftUI
 import SwiftData
 
 
-@Model
-final class Review {
-  var subject: String
-  var body : String
-  var movie: Movie 
-  
-  
-  init(subject: String, body: String, movie: Movie) {
-    self.subject = subject
-    self.body = body
-    self.movie = movie
-  }
-}
+
+
+typealias Review = CineBaySchemaV2.Review
+//@Model
+//final class Review {
+//  var subject: String
+//  var body : String
+//  var movie: Movie 
+//  
+//  
+//  init(subject: String, body: String, movie: Movie) {
+//    self.subject = subject
+//    self.body = body
+//    self.movie = movie
+//  }
+//}
 
 extension Review {
   static var example: [Review] {

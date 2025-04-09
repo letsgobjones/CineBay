@@ -8,11 +8,20 @@
 import SwiftUI
 import SwiftData
 
+
 @main
 struct CineBayApp: App {
   
   // 1. Define the persistent ModelContainer (SHARED INSTANCE)
-  var sharedModelContainer: ModelContainer = {
+  var sharedModelContainer: ModelContainer
+  
+  // 2. Create the AppServices container instance as State
+  @State private var appServices: AppManager
+  
+  
+  // 3. Custom init to initialize @State object BEFORE body access
+  init() {
+    print("CineApp init() called...")
     let schema = Schema([
       Movie.self, Review.self, Actor.self
     ])
@@ -21,22 +30,19 @@ struct CineBayApp: App {
     let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
     
     do {
-      return try ModelContainer(for: schema, configurations: [modelConfiguration])
+      sharedModelContainer = try  ModelContainer(for: schema, migrationPlan: CineBayMigrationPlan.self, configurations: [modelConfiguration])
     } catch {
       fatalError("Could not create ModelContainer: \(error)")
     }
-  }()// Immediately execute the closure
-  
-  // 2. Create the AppServices container instance as State
-  @State private var appServices: AppManager
-  
-  // 3. Custom init to initialize @State object BEFORE body access
-  init() {
-    print("CineApp init() called...")
+    
     // Initialize AppServices state object, passing the shared ModelContainer
     _appServices = State(initialValue: AppManager(modelContainer: sharedModelContainer))
     print("CineBayApp init finished.")
   }
+  
+ 
+  
+
   
   var body: some Scene {
     WindowGroup {
@@ -50,3 +56,54 @@ struct CineBayApp: App {
     .modelContainer(sharedModelContainer)
   }
 }
+
+
+
+
+
+
+//Orginal
+
+
+//@main
+//struct CineBayApp: App {
+//  
+//  // 1. Define the persistent ModelContainer (SHARED INSTANCE)
+//  var sharedModelContainer: ModelContainer = {
+//    let schema = Schema([
+//      Movie.self, Review.self, Actor.self
+//    ])
+//    
+//    // Configure for persistent storage (on-disk)
+//    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+//    
+//    do {
+//      return try ModelContainer(for: schema, configurations: [modelConfiguration])
+//    } catch {
+//      fatalError("Could not create ModelContainer: \(error)")
+//    }
+//  }()// Immediately execute the closure
+//  
+//  // 2. Create the AppServices container instance as State
+//  @State private var appServices: AppManager
+//  
+//  // 3. Custom init to initialize @State object BEFORE body access
+//  init() {
+//    print("CineApp init() called...")
+//    // Initialize AppServices state object, passing the shared ModelContainer
+//    _appServices = State(initialValue: AppManager(modelContainer: sharedModelContainer))
+//    print("CineBayApp init finished.")
+//  }
+//  
+//  var body: some Scene {
+//    WindowGroup {
+//      NavigationStack {
+//        MovieListScreen()
+//      }
+//      // 4. Inject the AppServices instance
+//      .environment(appServices)
+//    }
+//    // 5. Inject the ModelContainer (needed for @Query, @Environment(\.modelContext))
+//    .modelContainer(sharedModelContainer)
+//  }
+//}

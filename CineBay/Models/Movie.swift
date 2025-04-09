@@ -12,8 +12,15 @@ import SwiftData
 final class Movie {
   var title: String
   var year: Int
+  var reviewsCount: Int {
+    reviews?.count ?? 0
+  }
   
-  @Relationship(deleteRule: .cascade, inverse: \Review.movie) 
+  var actorsCount: Int {
+    actors?.count ?? 0
+  }
+  
+  @Relationship(deleteRule: .cascade, inverse: \Review.movie)
   var reviews:[Review]? = []
   
   @Relationship(deleteRule: .nullify, inverse: \Actor.movies)

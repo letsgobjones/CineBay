@@ -12,8 +12,14 @@ struct MovieListCellView: View {
   var movie: Movie
   
     var body: some View {
-      HStack {
-        Text(movie.title)
+      HStack(alignment: .firstTextBaseline) {
+        VStack(alignment: .leading) {
+          Text(movie.title)
+          Text("Number of reviews: \(movie.reviewsCount)")
+            .font(.caption)
+          Text("Number of actors: \(movie.actorsCount)")
+            .font(.caption)
+        }
         Spacer()
         Text(movie.year.description)
       }

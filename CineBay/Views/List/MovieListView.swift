@@ -36,9 +36,6 @@ struct MovieListView: View {
 }
 
 
-
-
-
 #Preview {
  let appManager = AppManager(modelContainer: PreviewContainer.shared)
   NavigationStack {
@@ -48,7 +45,6 @@ struct MovieListView: View {
   .modelContainer(PreviewContainer.shared)
   .environment(appManager)
 }
-
 
 
 extension MovieListView {

@@ -12,9 +12,9 @@ struct ReviewListView: View {
 
   let movie: Movie
     var body: some View {
-      if let reviews = movie.reviews, !reviews.isEmpty {
+      if  !movie.reviews.isEmpty {
         List {
-          ForEach(reviews) { review in
+          ForEach(movie.reviews) { review in
             ReviewListCellView(review: review)
           }.onDelete { indexSet in appManager.reviewStore.deleteReview(at: indexSet, movie: movie)
           }

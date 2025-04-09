@@ -44,7 +44,12 @@ enum CineBayMigrationPlan: SchemaMigrationPlan {
         // 4. Modify duplicate movie titles to ensure uniqueness in the target schema (V2)
         for duplicateMovie in duplicates {
           // Fetch the movie to be updated, scoping the fetch to the source schema
-          if let movieToBeUpdated = try? context.fetch(FetchDescriptor<CineBaySchemaV1.Movie>(predicate: #Predicate { $0.id == duplicateMovie.id })).first {
+         let movieId = duplicateMovie.id // Store the id
+          
+          let fetchDescriptor = FetchDescriptor<CineBaySchemaV1.Movie>(predicate: #Predicate { movie in
+            movie.id == movieId // Compare to the stored id
+          })
+          if let movieToBeUpdated = try? context.fetch(fetchDescriptor).first {
             movieToBeUpdated.title = "\(movieToBeUpdated.title) (Duplicate - \(UUID().uuidString.prefix(8)))"
           }
         }
